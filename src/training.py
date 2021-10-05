@@ -1,4 +1,4 @@
-from src.utils.common import read_config
+from utils.common import read_config
 
 import argparse
 
