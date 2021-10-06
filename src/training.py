@@ -16,6 +16,13 @@ def training(config_path):
     NUM_CLASSES = config["params"]["num_classes"]
 
     model = create_model(LOSS_FUNCTION, OPTIMIZER, METRICS, NUM_CLASSES)
+
+    EPOCHS = config["params"]["epochs"]
+    VALIDATION = (x_val, y_val)
+
+
+    history = model.fit(x_train, y_train, epochs=EPOCHS, validation_data=VALIDATION)
+
     
 if __name__ == '__main__':
     args = argparse.ArgumentParser()
