@@ -1,6 +1,7 @@
 from utils.data_mgt import get_data
 from utils.common import read_config
 from utils.model import create_model, save_model
+from utils.callbacks import get_callbacks
 
 import os
 import argparse
@@ -22,7 +23,9 @@ def training(config_path):
     VALIDATION = (x_val, y_val)
 
 
-    history = model.fit(x_train, y_train, epochs=EPOCHS, validation_data=VALIDATION)
+    COLLBACK_LIST = get_callbacks(config, x_train)
+
+    history = model.fit(x_train, y_train, epochs=EPOCHS, validation_data=VALIDATION, callbacks=COLLBACK_LIST)
 
     artifacts_dir = config["artifacts"]["artifacts_dir"]
     model_dir = config["artifacts"]["model_dir"]
